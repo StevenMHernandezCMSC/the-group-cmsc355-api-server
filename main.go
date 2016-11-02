@@ -6,9 +6,9 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"strconv"
 	"time"
-	"./database"
-	"./models"
-	"./utils"
+	"github.com/stevenmhernandez/the-group-cmsc355-api-server/database"
+	"github.com/stevenmhernandez/the-group-cmsc355-api-server/models"
+	"github.com/stevenmhernandez/the-group-cmsc355-api-server/utils"
 )
 
 var dbmap gorp.DbMap = database.Init()

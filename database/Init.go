@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/coopernurse/gorp"
 	"database/sql"
-	"../utils"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
+	"github.com/stevenmhernandez/the-group-cmsc355-api-server/utils"
 )
 
 func Init() gorp.DbMap {
