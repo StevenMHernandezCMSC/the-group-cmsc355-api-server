@@ -1,11 +1,10 @@
 package database
 
 import (
+	"os"
 	"fmt"
 	"github.com/coopernurse/gorp"
 	"database/sql"
-	"io/ioutil"
-	"gopkg.in/yaml.v2"
 	"github.com/stevenmhernandez/the-group-cmsc355-api-server/utils"
 )
 
@@ -24,10 +23,5 @@ func Init() gorp.DbMap {
 }
 
 func getDBConnectionString() string {
-	b, _ := ioutil.ReadFile("./app/config/database.yml")
-
-	obj := DBConfig{}
-	yaml.Unmarshal(b, &obj)
-
-	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", obj.User, obj.Password, obj.Host, obj.Port, obj.DBname)
+	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", os.Getenv("DBUSER"), os.Getenv("DBPASS"), os.Getenv("DBHOST"), os.Getenv("DBPORT"), os.Getenv("DBTABLE"))
 }
