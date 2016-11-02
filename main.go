@@ -9,10 +9,10 @@ import (
 	"github.com/stevenmhernandez/the-group-cmsc355-api-server/database"
 	"github.com/stevenmhernandez/the-group-cmsc355-api-server/models"
 	"github.com/stevenmhernandez/the-group-cmsc355-api-server/utils"
+	"os"
 )
 
 var dbmap gorp.DbMap = database.Init()
-
 
 func main() {
 	dbmap.AddTableWithName(models.Highscore{}, "highscores").SetKeys(true, "Id")
@@ -22,7 +22,8 @@ func main() {
 	router.GET("/highscores", HighScoreList)
 	router.POST("/highscores", HighScorePost)
 
-	router.Run(":3000")
+	port := os.Getenv("PORT")
+	router.Run(":" + port)
 }
 
 func index(c *gin.Context) {
