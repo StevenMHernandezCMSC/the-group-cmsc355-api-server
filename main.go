@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/coopernurse/gorp"
 	_ "github.com/go-sql-driver/mysql"
-	"strconv"
 	"time"
 	"github.com/stevenmhernandez/the-group-cmsc355-api-server/database"
 	"github.com/stevenmhernandez/the-group-cmsc355-api-server/models"
@@ -23,6 +22,9 @@ func main() {
 	router.POST("/highscores", HighScorePost)
 
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
 	router.Run(":" + port)
 }
 
@@ -35,11 +37,7 @@ func HighScoreList(c *gin.Context) {
 	var highScores []models.Highscore
 	_, err := dbmap.Select(&highScores, "select * from highscores order by score DESC limit 3")
 	utils.LogError(err, "Select failed:")
-	content := gin.H{}
-	for k, v := range highScores {
-		content[strconv.Itoa(k)] = v
-	}
-	c.JSON(200, content)
+	c.JSON(200, highScores)
 }
 
 func HighScorePost(c *gin.Context) {

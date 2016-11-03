@@ -1,0 +1,5 @@
+user:     example
+password: example
+host:     example
+port:     3306
+dbname:   example
