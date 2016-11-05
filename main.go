@@ -53,17 +53,28 @@ func HighScorePost(c *gin.Context) {
 }
 
 func addHighScore(username string, score int64) models.Highscore {
-	model := models.Model{
-		CreatedAt:    time.Now().UnixNano(),
+	var highscore models.Highscore
+	_ = dbmap.SelectOne(&highscore, "select * from highscores where username=?", username)
+
+	if highscore.Id != 0 {
+		if (score > highscore.Score) {
+			highscore.Score = score;
+			_, err := dbmap.Update(&highscore)
+			utils.LogError(err, "Update failed:")
+		}
+	} else {
+		model := models.Model{
+			CreatedAt:    time.Now().UnixNano(),
+		}
+
+		highscore = models.Highscore{
+			Model:           model,
+			Username:        username,
+			Score:           score,
+		}
+		err := dbmap.Insert(&highscore)
+		utils.LogError(err, "Insert failed:")
 	}
 
-	highscore := models.Highscore{
-		Model:           model,
-		Username:        username,
-		Score:           score,
-	}
-
-	err := dbmap.Insert(&highscore)
-	utils.LogError(err, "Insert failed:")
 	return highscore
 }
