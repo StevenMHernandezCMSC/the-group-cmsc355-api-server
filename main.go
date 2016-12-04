@@ -35,7 +35,7 @@ func index(c *gin.Context) {
 
 func HighScoreList(c *gin.Context) {
 	var highScores []models.Highscore
-	_, err := dbmap.Select(&highScores, "select * from highscores order by score DESC limit 3")
+	_, err := dbmap.Select(&highScores, "select * from highscores order by score DESC limit 10")
 	utils.LogError(err, "Select failed:")
 	c.JSON(200, highScores)
 }
