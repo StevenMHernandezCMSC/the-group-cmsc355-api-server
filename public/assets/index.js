@@ -7,6 +7,7 @@ var frames = [
     'optionsmenu',
     'userstats',
     'highscores',
+    'snakepoetry',
     'resumegame',
     'quitgame'
 ];
