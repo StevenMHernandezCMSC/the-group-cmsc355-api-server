@@ -18,6 +18,9 @@ func main() {
 
 	router := gin.Default()
 
+	router.StaticFile("/", "./public/index.html")
+	router.Static("/assets", "./public/assets/")
+
 	router.GET("/highscores", HighScoreList)
 	router.POST("/highscores", HighScorePost)
 

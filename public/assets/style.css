@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    color: #ddd;
+    font-family: sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    background: #111;
+}
+
+body {
+    position: absolute;
+}
+
+h1, h2, small {
+    text-align: center;
+}
+
+h1, h2, p, small {
+    display: block;
+    width: 300px;
+    margin: 40px auto;
+    line-height: 30px;
+}
+
+h1 {
+    margin-top: 140px;
+}
+
+a {
+    color: #ddd;
+}
+
+a:hover {
+    color: #aaa;
+}
+
+small {
+    color: #444;
+}
