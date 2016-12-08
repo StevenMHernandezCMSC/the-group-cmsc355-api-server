@@ -24,6 +24,8 @@ func main() {
 	router.GET("/highscores", HighScoreList)
 	router.POST("/highscores", HighScorePost)
 
+	router.GET("/slideshow/frames", SlideShowFrameList)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"
@@ -80,4 +82,11 @@ func addHighScore(username string, score int64) models.Highscore {
 	}
 
 	return highscore
+}
+
+func SlideShowFrameList(c *gin.Context) {
+	var frames []models.SlideshowFrame
+	_, err := dbmap.Select(&frames, "select * from slideshow_frames order by ordinal")
+	utils.LogError(err, "Select failed:")
+	c.JSON(200, frames)
 }

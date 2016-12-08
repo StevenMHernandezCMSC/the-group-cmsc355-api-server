@@ -5,7 +5,7 @@
 
 html, body {
     color: #ddd;
-    font-family: sans-serif;
+    font-family: 'Dosis', sans-serif;
     height: 100%;
     width: 100%;
 }
@@ -24,13 +24,8 @@ h1, h2, small {
 
 h1, h2, p, small {
     display: block;
-    width: 300px;
-    margin: 40px auto;
+    margin: 20px auto;
     line-height: 30px;
-}
-
-h1 {
-    margin-top: 140px;
 }
 
 a {
@@ -43,4 +38,24 @@ a:hover {
 
 small {
     color: #444;
+}
+
+#project-info {
+    width: 300px;
+    margin: 140px auto 0;
+    max-width: 20em;
+    padding: 1em;
+    line-height: 2;
+    background: rgba(1, 1, 1, 0.5);
+}
+
+#caption {
+    display: none;
+    max-width: 20em;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    padding: 1em;
+    line-height: 2;
+    background: rgba(1, 1, 1, 0.5);
 }
